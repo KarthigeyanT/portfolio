@@ -2,11 +2,21 @@
 <html lang="en">
 
 <head>
+  <!-- <script src="assets/js/script.js"></script> -->
+  
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vCard - Personal Portfolio</title>
-
+  <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+emailjs.init({
+  publicKey: "jPWbvtvscW1KVOB-F"});
+})();
+</script>
   <!--
     - favicon
   -->
@@ -596,7 +606,27 @@ This project showcases my ability to create full-stack applications that combine
           </ol>
 
         </section>
+ <!-- JavaScript Code Directly in HTML -->
+    <script>
+        function sendMail() {
+            let parms = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value,
+            };
 
+            emailjs.send("service_ynpgsq8", "template_63v7pvy", parms)
+                .then(function(response) {
+                    alert("Email sent successfully!");
+                })
+                .catch(function(error) {
+                    alert("Failed to send email. Please try again later.");
+                });
+        }
+    </script>
+
+</body>
         <!-- <section class="timeline">
 
           <div class="title-wrapper">
@@ -1204,30 +1234,30 @@ This project showcases my ability to create full-stack applications that combine
           </figure>
       </section>
       
+      
         
+      <section class="contact-form">
 
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
-
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-
-          </form>
-
-        </section>
+        <h3 class="h3 form-title">Contact Form</h3>
+      
+        <form id="contact-form" class="form" data-form onsubmit="sendMail(); return false;">
+      
+          <div class="input-wrapper">
+            <input id="name" type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+            <input id="email_id" type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+          </div>
+      
+          <textarea id="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+      
+          <button class="form-btn" type="submit" disabled data-form-btn>
+            <ion-icon name="paper-plane"></ion-icon>
+            <span>Send Message</span>
+          </button>
+      
+        </form>
+      
+      </section>
+      
 
       </article>
 

@@ -1,5 +1,26 @@
 'use strict';
+//email
+emailjs.init("jPWbvtvscW1KVOB-F");
 
+function sendMail() {
+    let parms = {
+        name: document.getElementById("name").value,
+        email_id: document.getElementById("email_id").value,
+        message: document.getElementById("message").value,
+    };
+
+    console.log(parms); // Debug: Log the parameters
+
+    emailjs.send("service_ynpgsq8", "template_63v7pvy", parms)
+        .then(function(response) {
+            console.log("SUCCESS!", response.status, response.text);
+            alert("Email sent successfully!"+response.status);
+        })
+        .catch(function(error) {
+            console.log("FAILED...", error);
+            alert("Failed to send email. Please try again later.");
+        });
+}
 
 
 // element toggle function
